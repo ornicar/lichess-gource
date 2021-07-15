@@ -20,6 +20,7 @@ sed -i -r '/www\/(i18n|moment)\//d' out/lichobile.txt
 sed -i -r '/ios\/App\/App/d' out/lichobile.txt
 sed -i -r 's#/lichobile/project/#/lichobile/#' out/lichobile.txt
 sed -i -r 's#/lichobile/src/#/lichobile/#' out/lichobile.txt
+sed -i -r 's#/lichobile/js/#/lichobile/#' out/lichobile.txt
 
 sed -i -r '/conf\/(i18n\/)?messages/d' out/lila.txt
 sed -i -r '/modules\/i18n\/messages/d' out/lila.txt
@@ -39,13 +40,12 @@ sed -i -r '/\/images\/flags?\//d' out/combined.txt
 sed -i -r '/\/vendors?\//d' out/combined.txt
 sed -i -r '/\.DS_Store/d' out/combined.txt
 sed -i -r '/\.idea/d' out/combined.txt
+sed -i -r '/@gmail\.com/d' out/combined.txt
 sed -i -r 's/\|clarkerubber\|/|James Clarke|/' out/combined.txt
 sed -i -r 's/\|ornicar\|/|Thibault Duplessis|/' out/combined.txt
 sed -i -r 's/\|cchantep\|/|Cédric Chantepie|/' out/combined.txt
-sed -i -r 's/\|(l|L)ucas\|/|Lucas Bonnet|/' out/combined.txt
-sed -i -r 's/\|Lukhas\|/|Lucas Bonnet|/' out/combined.txt
+sed -i -r 's/\|(l|L)u(c|kh)as\|/|Lucas Bonnet|/' out/combined.txt
 sed -i -r 's/\|root\|/|Lucas Bonnet|/' out/combined.txt
-sed -i -r '/dependabot/Thibault Duplessis/d' out/combined.txt
-sed -i -r '/Scala Steward/Thibault Duplessis/d' out/combined.txt
+sed -i -r 's/Scala Steward/Thibault Duplessis/' out/combined.txt
 
 echo "Done"
