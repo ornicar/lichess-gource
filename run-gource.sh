@@ -1,28 +1,35 @@
 #!/bin/sh
 
-outfile="out/gource.mp4"
+outfile="out/lichess-code.mp4"
 resolution="2560x1440"
+fps=60
+speed=0.4
 
 time gource out/combined.txt \
-    -s 0.25 \
+    -s $speed \
     -$resolution \
-    --title "lichess.org source code" \
+    --title "lichess.org/source" \
     --background-colour 121212 \
-    --background-image background.png \
-    --dir-colour dddddd \
+    --background-image background.jpg \
+    --dir-colour eeeeee \
     --filename-colour cccccc \
     --highlight-colour ffffff \
-    --filename-time 10 \
+    --font-size 25 \
+    --user-font-size 19 \
+    --filename-time 4 \
     --file-extensions \
-    --file-extension-fallback \
+    --file-filter "(.+\.(yml|png|jpg|jpeg|gif|jar|svg|ogg|mp3|wav|pgn|ico|ttf|eot|woff|woff2|otf|rtf|confbak|bak|gitignore|gitmodules|example|m3u|aifc|log|jshintrc|eslintrc|default|p12|o|swp|h5|service|babelrc|npmrc|npmignore|pdf|ps1|lock|xcworkspace|editorconfig|gitattributes|pbxproj|BIN|sha512|prettierignore|eslintignore|ignore|dockerfile|ai_dist|dist|old|cur|perft|plist|storyboard|bz2))$" \
+    --key \
     --date-format "%d/%m/%Y" \
     --auto-skip-seconds 0.001 \
     --multi-sampling  \
     --highlight-users \
     --max-files 0 \
-    --hide mouse,progress \
     --stop-at-end \
-    --output-framerate 60 \
-    --file-idle-time 30 \
+    --output-framerate $fps \
+    --file-idle-time 45 \
+    --hide mouse,progress \
     --output-ppm-stream - \
-    | ffmpeg -y -r 60 -f image2pipe -vcodec ppm -i - -vcodec libx264 -preset medium -pix_fmt yuv420p -crf 1 -threads 0 -bf 0 lichess.mp4
+    | ffmpeg -y -r $fps -f image2pipe -vcodec ppm -i - -vcodec libx265 -preset medium -crf 10 -threads 12 $outfile
+    # --start-date "2020-01-01" \
+    # --stop-at-time 10 \
