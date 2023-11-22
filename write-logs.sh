@@ -1,9 +1,13 @@
-#!/bin/sh
+#!/bin/sh -e
 
-rm out/*.txt
+rm -f out/*.txt
+base_dir=$(pwd)
 
-for repo in dmChessPlugin lichess-old lila scalachess scalalib compression chessground chessops lila-ws lila-fishnet lila-search lila-openingexplorer lila-tablebase lila-push lichobile fishnet irwin lila-ip2proxy lila-gif lichess-api lichess-puzzler scalachessjs capacitor-stockfish cordova-plugin-stockfish chess-openings lichess-bot lichess-sysadmin lichess-db; do
+for repo in dmChessPlugin lichess-old lila scalachess scalalib compression chessground chessops lila-ws lila-fishnet lila-search lila-openingexplorer lila-tablebase lila-push lichobile fishnet irwin lila-ip2proxy lila-gif lichess-api lichess-puzzler scalachessjs capacitor-stockfish cordova-plugin-stockfish chess-openings lichess-bot lichess-sysadmin lichess-db lichess-pgn-viewer lila-http external-engine kaladin lila-ip2proxy lila-db-seed; do
   echo $repo
+  cd ~/$repo
+  git pull
+  cd $base_dir
   gource --output-custom-log out/$repo.txt ~/$repo
   sed -i -r "s#(.+)\|#\1|/$repo#" out/$repo.txt
   sed -i '/node_modules/d' out/$repo.txt
