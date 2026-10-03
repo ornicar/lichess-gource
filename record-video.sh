@@ -4,10 +4,10 @@ outfile="out/lichess-code.mp4"
 # resolution="1280x720"
 resolution="2560x1440"
 fps=60
-speed=0.05
+speed=0.01
 timescale=0.7
 
-time gource out/combined.txt \
+SDL_VIDEODRIVER=wayland gource out/combined.txt \
   -s $speed \
   -c $timescale \
   -$resolution \

@@ -3,7 +3,7 @@
 rm -f out/*.txt
 base_dir=$(pwd)
 
-for repo in dmChessPlugin lichess-old lila scalachess scalalib compression chessground chessops lila-ws lila-fishnet lila-search lila-openingexplorer lila-tablebase lila-push lichobile fishnet irwin lila-ip2proxy lila-gif lichess-api lichess-puzzler scalachessjs capacitor-stockfish cordova-plugin-stockfish chess-openings lichess-bot lichess-sysadmin lichess-db lichess-pgn-viewer lila-http external-engine kaladin lila-ip2proxy lila-db-seed mobile lila-docker lila-engine dartchess berserk leroyjenkins flutter-chessground lichess-api-ui lichess-api-demo pgn-mule lila-pwned broadcaster; do
+for repo in dmChessPlugin lichess-old lila scalachess scalalib compression chessground chessops lila-ws lila-fishnet lila-search lila-openingexplorer lila-tablebase lila-push lichobile fishnet irwin lila-ip2proxy lila-gif lichess-api lichess-puzzler scalachessjs capacitor-stockfish cordova-plugin-stockfish chess-openings lichess-bot lichess-sysadmin lichess-db lichess-pgn-viewer lila-http external-engine kaladin lila-ip2proxy lila-db-seed mobile lila-docker lila-engine dartchess berserk leroyjenkins flutter-chessground lichess-api-ui lichess-api-demo pgn-mule lila-pwned broadcaster lichess-ansible lichess-papers stockfish-web; do
   echo $repo
   cd ~/$repo
   # git pull
@@ -39,6 +39,10 @@ sed -i -r 's#/scalachess/src/#/scalachess/#' out/scalachess.txt
 sed -i -r 's#/lila-ws/src/#/lila-ws/#' out/lila-ws.txt
 
 sed -i -r 's#/lichess-old/src/Bundle/#/lichess-old/#' out/lichess-old.txt
+
+sed -i -r '/mobile\/translation\//d' out/mobile.txt
+
+sed -i -r '/lichess-api\/doc\/specs\/examples\//d' out/lichess-api.txt
 
 cat out/*.txt | sort -n >out/combined.txt
 
